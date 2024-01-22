@@ -3,7 +3,7 @@ import { SafeAreaView, View, StatusBar, TouchableOpacity, FlatList, TextInput, I
 import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { Snackbar } from 'react-native-paper';
-import { BottomSheet } from '@rneui/themed';
+import Modal from 'react-native-modal';
 import axios from "axios";
 
 const searchResultsList = [
@@ -254,7 +254,7 @@ const SearchResultsScreen = ({ navigation, route }) => {
 
     function filterSheet() {
         return (
-            <BottomSheet
+            <Modal
                 isVisible={showFilterSheet}
                 containerStyle={{ backgroundColor: 'rgba(0.5, 0.50, 0, 0.50)' }}
                 modalProps={{ onRequestClose: () => { updateState({ showFilterSheet: false }) } }}
@@ -269,7 +269,7 @@ const SearchResultsScreen = ({ navigation, route }) => {
                     {bodyTypeInfo()}
                     {applyButton()}
                 </View>
-            </BottomSheet>
+            </Modal>
         )
     }
 

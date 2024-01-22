@@ -23,7 +23,7 @@ const RatingComponent = () => {
     const newAverageRating = totalRating / newRatings.length;
     setAverageRating(newAverageRating);
   };
-   const[nextRate,setNextRate]=useState(false)
+  const [nextRate, setNextRate] = useState(false)
   const handleSendRating = async () => {
     // Handle sending ratings to your server or performing other actions
     setNextRate(true)
@@ -52,86 +52,88 @@ const RatingComponent = () => {
       trigger: { seconds: 10 }, // Schedule the notification for 10 seconds from now
     });
   };
-  const Question=['Agency cusomer satisfaction','car quality','Pricing','Compliance with contractual commitments','Servise client']
+  const Question = ['Agency cusomer satisfaction', 'car quality', 'Pricing', 'Compliance with contractual commitments', 'Servise client']
   return (
     <View>
       <Modal isVisible={isModalVisible} style={styles.modal}>
-        {!nextRate ? 
-        <View style={styles.modalContent}>
-          <View style={{ alignItems: 'center' }}>
-            <Text style={{ marginBottom: 20, ...Fonts.blackColor16Medium }}>
-              Rate This Agency
-            </Text>
-          </View>
-          <MaterialCommunityIcons name="close-thick" size={24} color="grey" style={styles.closeIcon}
-            onPress={() => setModalVisible(false)} />
-          {ratings.map((rating, index) => (
-            <View key={index} style={styles.questionContainer}>
-              <Text style={{ ...Fonts.grayColor14Regular }}>{Question[index]} :</Text>
-              <View style={{ left: '35%', alignItems: 'center', alignContent: "center", backgroundColor: Colors.primaryColor, borderRadius: 15, height: 30, width: 150 }}>
-                <StarRating
-                  disabled={false}
-                  maxStars={5}
-                  rating={rating}
-                  selectedStar={(rating) => handleStarRating(rating, index)}
-                  starSize={20}
-                  fullStarColor="gold" // Set the color for filled stars
-                  emptyStarColor="white"
-                />
+        {!nextRate ?
+          <View style={styles.modalContent}>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={{ marginBottom: 20, ...Fonts.blackColor16Medium }}>
+                Rate This Agency
+              </Text>
+            </View>
+
+            {ratings.map((rating, index) => (
+              <View key={index} style={styles.questionContainer}>
+                <Text style={{ ...Fonts.grayColor14Regular }}>{Question[index]} :</Text>
+                <View style={{ top: 15, left: '35%', alignItems: 'center', alignContent: "center", backgroundColor: Colors.primaryColor, borderRadius: 15, height: 30, width: 150, paddingTop: 5 }}>
+                  <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={rating}
+                    selectedStar={(rating) => handleStarRating(rating, index)}
+                    starSize={20}
+                    fullStarColor="gold" // Set the color for filled stars
+                    emptyStarColor="white"
+                  />
+                </View>
+              </View>
+            ))}
+            <View style={styles.averageRatingContainer}>
+              {/* <Text style={{ ...Fonts.blackColor16Medium }}>Average Rating : </Text> */}
+              <StarRating
+                disabled={true}
+                maxStars={5}
+                rating={averageRating}
+                fullStarColor="gold" // Set the color for filled stars
+                emptyStarColor="gray"
+                starSize={30}
+              />
+              {/* <Text style={styles.averageRatingText}>{averageRating.toFixed(2)}</Text> */}
+
+              <View style={styles.nextContainer}>
+                <TouchableOpacity onPress={handleSendRating} style={styles.buttonContainer}>
+                  <MaterialIcons name="navigate-next" size={28} color="white" />
+                </TouchableOpacity>
               </View>
             </View>
-          ))}
-          <View style={styles.averageRatingContainer}>
-            {/* <Text style={{ ...Fonts.blackColor16Medium }}>Average Rating : </Text> */}
-            <StarRating
-              disabled={true}
-              maxStars={5}
-              rating={averageRating}
-              fullStarColor="gold" // Set the color for filled stars
-              emptyStarColor="gray"
-              starSize={30}
-            />
-            {/* <Text style={styles.averageRatingText}>{averageRating.toFixed(2)}</Text> */}
 
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity onPress={handleSendRating} >
-                <MaterialIcons name="navigate-next" size={24} color="white" />
-              </TouchableOpacity>
-            </View>
+            {/* TEST */}
           </View>
-           
-          {/* TEST */}
-        </View> 
-        :
-        <View style={styles.modalContent}>
-          {/* Close icon in the top-right corner */}
-          {/* <Icon
+          :
+          <View style={styles.modalContentSecond}>
+            <MaterialCommunityIcons name="close-thick" size={24} color="grey" style={styles.closeIcon}
+              onPress={() => setModalVisible(false)} />
+            {/* Close icon in the top-right corner */}
+            {/* <Icon
             name="close"
             size={25}
             color="black"
             style={styles.closeIcon}
             onPress={handleCloseModal}
           /> */}
-          {/* App logo in the top-center */}
-          <Image source={{
-            uri:
-              'https://png.pngtree.com/png-clipart/20210606/original/pngtree-sport-car-logo-vector-png-image_6398339.jpg', // Replace with your app logo's URL
-          }} style={styles.appLogo} />
-          <Text style={styles.heading}>Rate Our App</Text>
-          {/* Star rating */}
-          <StarRating
-            maxStars={5}
-            rating={selectedRating}
-            fullStarColor="gold"
-            emptyStarColor="gray"
-            starSize={40}
-            selectedStar={handleRating}
-          />
-          {/* Send Rating button */}
-          {showSendButton && (
-            <Button title="Send Rating" onPress={handleSendRating} style={{backgroundColor:Colors.primaryColor, borderRadius:15,with:"20%",top:10}} />
-          )}
-        </View>
+            {/* App logo in the top-center */}
+            <Text style={styles.heading}>Rate Our App</Text>
+            <Image source={{
+              uri:
+                'https://png.pngtree.com/png-clipart/20210606/original/pngtree-sport-car-logo-vector-png-image_6398339.jpg', // Replace with your app logo's URL
+            }} style={styles.appLogo} />
+            
+            {/* Star rating */}
+            <StarRating
+              maxStars={5}
+              rating={selectedRating}
+              fullStarColor="gold"
+              emptyStarColor="gray"
+              starSize={40}
+              selectedStar={handleRating}
+            />
+            {/* Send Rating button */}
+            {showSendButton && (
+              <Button title="Send Rating" onPress={handleSendRating} style={{ backgroundColor: Colors.primaryColor, borderRadius: 15, with: "20%", top: 10 }} />
+            )}
+          </View>
         }
       </Modal>
     </View>
@@ -145,6 +147,12 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: 'white',
     borderRadius: 15,
+  },
+  modalContentSecond: {
+    backgroundColor: 'white',
+    borderRadius: 15,
+    padding: 20,
+    alignItems: 'center',
   },
   closeIcon: {
     position: 'absolute',
@@ -164,15 +172,21 @@ const styles = StyleSheet.create({
     marginBottom: 16, // Adjust the spacing between questions
   },
   averageRatingContainer: {
-    marginTop: 10, // Adjust the spacing above average rating
+    marginTop: 20, // Adjust the spacing above average rating
     alignItems: 'center',
   },
   averageRatingText: {
     marginTop: 5, // Adjust the spacing between average rating and text
   },
-  buttonContainer: {
+  nextContainer: {
     width: '100%',
-    alignItems: 'flex-end', // Adjust the spacing between buttons
+    alignItems: 'flex-end',
+
+  },
+  buttonContainer: {
+    width: '10%',
+    alignItems: 'center',
+    // Adjust the spacing between buttons
     borderRadius: 15,
     backgroundColor: Colors.primaryColor,
   },

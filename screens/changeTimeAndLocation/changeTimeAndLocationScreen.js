@@ -3,7 +3,7 @@ import { SafeAreaView, View, StatusBar, Dimensions, ScrollView, TouchableOpacity
 import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu } from 'react-native-material-menu';
-import { BottomSheet } from '@rneui/themed';
+import Modal from 'react-native-modal';
 import { Calendar } from "react-native-calendars";
 
 const locationsList = ['4517 Washington Ave. Manchester, Kentucky',
@@ -177,7 +177,7 @@ const ChangeTimeAndLocationScreen = ({ navigation }) => {
 
     function startTripEndTripSheet() {
         return (
-            <BottomSheet
+            <Modal
                 isVisible={showStartTripEndTripSheet}
                 containerStyle={{ backgroundColor: 'rgba(0.5, 0.50, 0, 0.50)' }}
                 onBackdropPress={() => { updateState({ showStartTripEndTripSheet: false }) }}
@@ -238,7 +238,7 @@ const ChangeTimeAndLocationScreen = ({ navigation }) => {
                     </View>
                     {confirmButton()}
                 </View>
-            </BottomSheet>
+            </Modal>
         )
     }
 

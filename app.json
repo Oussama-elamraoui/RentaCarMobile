@@ -15,19 +15,27 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.oussamaelamraoui.rentalcar",
+      "modularHeaders": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.oussamaelamraoui.rentalcar"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-build-properties"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "604a2595-0351-45f8-92e6-d5b2b1b736f2"
+      }
+    }
   }
 }

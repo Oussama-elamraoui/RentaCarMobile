@@ -3,9 +3,9 @@ import { FlatList, SafeAreaView, View, StatusBar, TouchableOpacity, TouchableHig
 import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons, Ionicons, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { Snackbar } from 'react-native-paper';
+import {  Snackbar } from 'react-native-paper';
+import Modal from 'react-native-modal';
 import axios from "axios";
-import { BottomSheet } from '@rneui/themed';
 import { Calendar } from "react-native-calendars";
 import { Menu } from 'react-native-material-menu';
 import AnimatedLoader from 'react-native-animated-loader';
@@ -701,7 +701,7 @@ const SavedScreen = ({ navigation }) => {
     }
     function startTripEndTripSheet() {
         return (
-            <BottomSheet
+            <Modal
                 isVisible={showStartTripEndTripSheet}
                 containerStyle={{ backgroundColor: 'rgba(0.5, 0.50, 0, 0.50)' }}
                 modalProps={{ onRequestClose: () => { updateState({ showStartTripEndTripSheet: false }) } }}
@@ -762,7 +762,7 @@ const SavedScreen = ({ navigation }) => {
                     </View>
                     {confirmButton()}
                 </View>
-            </BottomSheet>
+            </Modal>
         )
     }
     function confirmButton() {

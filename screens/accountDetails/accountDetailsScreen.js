@@ -2,14 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import { SafeAreaView, View, StatusBar, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet, Text, BackHandler, FlatList, Picker } from "react-native";
 import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons, MaterialCommunityIcons, Entypo, Ionicons } from '@expo/vector-icons';
-import { BottomSheet } from '@rneui/themed';
-import { Icon } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 import { AuthContext } from "../../context/context";
 import axios from "axios";
 import * as ImagePicker from 'expo-image-picker';
 import Modal from 'react-native-modal';
-import { Overlay } from "@rneui/themed";
 import { Camera } from 'expo-camera';
 import CountryPicker from 'react-native-country-picker-modal';
 import SearchableDropdown from 'react-native-searchable-dropdown';
@@ -203,7 +200,7 @@ const AccountDetailsScreen = ({ navigation }) => {
 
     function changeProfilePicOptionsSheet() {
         return (
-            <BottomSheet
+            <Modal
                 isVisible={showBottomSheet}
                 containerStyle={{ backgroundColor: 'rgba(0.5, 0.50, 0, 0.50)' }}
                 onBackdropPress={() => { updateState({ showBottomSheet: false }) }}
@@ -236,7 +233,7 @@ const AccountDetailsScreen = ({ navigation }) => {
                         })}
                     </View>
                 </TouchableOpacity>
-            </BottomSheet>
+            </Modal>
         )
     }
 
@@ -662,7 +659,7 @@ const AccountDetailsScreen = ({ navigation }) => {
     function modal() {
         return (
 
-            <Overlay
+            <Modal
                 isVisible={isModalVisible}
                 onBackdropPress={() => { setIsModalVisible(false) }}
                 overlayStyle={{ width: '80%', padding: 0.0, borderRadius: Sizes.fixPadding - 5.0, }}
@@ -679,7 +676,7 @@ const AccountDetailsScreen = ({ navigation }) => {
 
                     </View>
                 </View>
-            </Overlay>
+            </Modal>
         );
     }
 

@@ -4,7 +4,6 @@ import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Menu } from 'react-native-material-menu';
 import { Calendar } from "react-native-calendars";
-import { BottomSheet } from '@rneui/themed';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Input } from 'react-native-elements';
 import MapView, { Marker } from 'react-native-maps';
@@ -397,7 +396,7 @@ const HomeScreen = ({ navigation, }) => {
 
     function startTripEndTripSheet() {
         return (
-            <BottomSheet
+            <Modal
                 isVisible={showStartTripEndTripSheet}
                 containerStyle={{ backgroundColor: 'rgba(0.5, 0.50, 0, 0.50)' }}
                 modalProps={{ onRequestClose: () => { updateState({ showStartTripEndTripSheet: false }) } }}
@@ -458,7 +457,7 @@ const HomeScreen = ({ navigation, }) => {
                     </View>
                     {confirmButton()}
                 </View>
-            </BottomSheet>
+            </Modal>
         )
     }
 

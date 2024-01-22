@@ -4,22 +4,13 @@ import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons } from '@expo/vector-icons';
 import { CircleFade } from 'react-native-animated-spinkit';
 import OTPTextView from 'react-native-otp-textinput';
-import { Overlay } from "@rneui/themed";
+import Modal from 'react-native-modal';
 import { AuthContext } from "../../context/context";
 const { height } = Dimensions.get('window');
-import firebase from "firebase/compat/app";
-import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import { firebaseConfiguration } from "../../config";
 const VerificationScreen = ({ navigation }) => {
-    const {phoneNum,verificationId} = useContext(AuthContext);
+
     const [otpInput, setotpInput] = useState('');
     const [isLoading, setisLoading] = useState(false);
-    const [code, setCode] = useState('');
-    const recaptchaVerifier = useRef(null)
-
-
-
-
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: Colors.bodyBackColor }}>
             <StatusBar translucent={false} backgroundColor={Colors.primaryColor} />
@@ -62,7 +53,7 @@ const VerificationScreen = ({ navigation }) => {
 
     function loadingDialog() {
         return (
-            <Overlay
+            <Modal
                 isVisible={isLoading}
                 overlayStyle={{ width: '80%', borderRadius: Sizes.fixPadding - 5.0, padding: 0.0 }}
             >
@@ -75,7 +66,7 @@ const VerificationScreen = ({ navigation }) => {
                         Please wait...
                     </Text>
                 </View>
-            </Overlay>
+            </Modal>
         );
     }
 

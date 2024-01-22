@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView, Dimensions, View, StatusBar, ScrollView, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
 import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Overlay } from "@rneui/themed";
+import Modal from 'react-native-modal';
 
 const { width } = Dimensions.get('window');
 
@@ -26,7 +26,7 @@ const ProfileScreen = ({ navigation, changeTab }) => {
 
     function logoutDialog() {
         return (
-            <Overlay
+            <Modal
                 isVisible={showLogoutDialog}
                 onBackdropPress={() => { setshowLogoutDialog(false) }}
                 overlayStyle={{ width: '80%', padding: 0.0, borderRadius: Sizes.fixPadding - 5.0, }}
@@ -54,7 +54,7 @@ const ProfileScreen = ({ navigation, changeTab }) => {
                         </Text>
                     </View>
                 </View>
-            </Overlay>
+            </Modal>
         )
     }
 

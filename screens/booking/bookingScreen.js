@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect, useCallback } from "react";
 import { SafeAreaView, View, StatusBar, FlatList, TouchableOpacity, TouchableHighlight, Dimensions, Image, StyleSheet, Text } from "react-native";
 import { Colors, Fonts, Sizes, } from "../../constants/styles";
 import { MaterialIcons, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
-import { BottomSheet } from '@rneui/themed';
 import Modal from 'react-native-modal';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { Snackbar } from 'react-native-paper';

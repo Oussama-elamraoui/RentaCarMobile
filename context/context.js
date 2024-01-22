@@ -2,21 +2,13 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useContext, createContext, useState, useEffect, useRef } from "react";
 import { BASE_URL } from "../config";
-import firebase from "./firebase";
-import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import { RecaptchaVerifier } from 'firebase/auth';
-import { encode } from 'base-64'; // Import the 'encode' function from 'base-64'
-
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState([]);
   const [testLogin, setTestLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [splashLoading, setSplashLoading] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState()
-  const [token, setToken] = useState('ff')
-  const recaptchaVerifier = useRef(null)
-  const [verificationId, setVerificationId] = useState(null);
+
   const test = {
     "email": "niseo@gmail.com",
     "password": "1234",
@@ -96,7 +88,7 @@ export const AuthProvider = ({ children }) => {
   };// .post(`${BASE_URL}/login`, {
   const login = async (email, password) => {
     setIsLoading(true);
-    await axios('http://192.168.1.113:8000/api/login', {
+    await axios('http://192.168.100.145:8000/api/login', {
       method: 'POST', // https://00b4-196-75-139-145.ngrok-free.app or 'GET', 'PUT', 'DELETE', etc., depending on your API endpoint
       headers: {
         Accept: 'application/json',
